@@ -172,10 +172,10 @@ async def check_closed_matches(api_data):
     # Find closed matches
     closed_matches = set(master_match_data.keys()) - api_match_ids
 
-    logging.info("Closed matches: {}".format(closed_matches))  # Add this line
+    logging.info("Closed matches: {}".format(closed_matches))
 
     for closed_match_id in closed_matches:
-        logging.info(f"Processing closed match ID: {closed_match_id}")  # Add this line
+        logging.info(f"Processing closed match ID: {closed_match_id}")
 
         # Get the corresponding match data, message ID, and description
         match_data_entry = master_match_data[closed_match_id]
@@ -199,7 +199,7 @@ async def check_closed_matches(api_data):
                 # Fetch the message and update it
                 target_message = await channel.fetch_message(message_id)
                 await target_message.edit(content=description, view=None)  # Remove buttons
-                logging.info(f"Closed match ID {closed_match_id} updated successfully.")  # Add this line
+                logging.info(f"Closed match ID {closed_match_id} updated successfully.")
             except discord.errors.NotFound:
                 logging.error(f"Message with ID {message_id} not found.")
                 continue
